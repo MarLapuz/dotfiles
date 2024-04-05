@@ -1,31 +1,25 @@
 local options = {
-  -- enable syntax highlighting
-  highlight = {
-    enable = true,
-    use_languagetree = true,
-    disabled = {},
-  },
-  -- enable indentation
-  indent = { enable = true, disabled = {} },
-  -- enable autotagging (w/ nvim-ts-autotag plugin)
-  autotag = { enable = true },
-  -- ensure these language parsers are installed
   ensure_installed = {
-    "json",
+    "vim",
+    "lua",
+    "vimdoc",
+
     "javascript",
     "typescript",
     "tsx",
-    "yaml",
     "html",
     "css",
+
+    "yaml",
+    "json",
+
     "markdown",
     "markdown_inline",
+
     "svelte",
     "prisma",
     "graphql",
     "bash",
-    "lua",
-    "vim",
     "dockerfile",
     "gitignore",
   },
@@ -46,6 +40,12 @@ local options = {
   markdown = {
     enable = true,
   },
+  highlight = {
+    enable = true,
+    use_languagetree = true,
+  },
+
+  indent = { enable = true },
 }
 
 return options
