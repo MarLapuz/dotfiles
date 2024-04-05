@@ -1,5 +1,4 @@
 # Shortcut for neovide
-alias n='neovide'
 alias vim='nvim'
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -132,3 +131,16 @@ eval "$(pyenv init -)"
 export PATH="$PATH:/Users/khel/.local/bin"
 
 export PATH="$PATH:/Users/khel/.cargo/bin"
+
+# bat
+alias cat='bat'
+
+if command -v bat &> /dev/null; then
+  alias cat='bat'
+elif command -v batcat > /dev/null; then
+  alias cat='batcat'
+fi
+
+# zoxide
+eval "$(zoxide init zsh)"
+
