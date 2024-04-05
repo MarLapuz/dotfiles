@@ -142,5 +142,4 @@ elif command -v batcat > /dev/null; then
 fi
 
 # zoxide
-eval "$(zoxide init zsh)"
-
+eval "$(zoxide init --cmd cd zsh)"
