@@ -1,11 +1,10 @@
 font:
   size: 16
+  # size: 18
   # offset:
   #   y: 16
   # glyph_offset:
   #   y: 9
-  glyph_offset:
-    y: 1
   normal:
     family: "JetBrainsMono Nerd Font"
 window:
