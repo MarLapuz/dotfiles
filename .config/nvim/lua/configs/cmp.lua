@@ -76,7 +76,7 @@ local options = {
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-u>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<Esc>"] = cmp.mapping.close(),
+    -- ["<Esc>"] = cmp.mapping.close(),
     ["q"] = cmp.mapping.close(),
 
     ["<CR>"] = cmp.mapping.confirm {

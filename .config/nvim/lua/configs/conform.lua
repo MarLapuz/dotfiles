@@ -3,7 +3,12 @@ local options = {
     lua = { "stylua" },
     css = { { "prettierd" } },
     html = { { "prettierd" } },
-    javascript = { { "prettierd" } },
+    typescript = { { "prettierd", "prettier" } },
+    typescriptreact = { { "prettierd", "prettier" } },
+    javascript = { { "prettierd", "prettier" } },
+    javascriptreact = { { "prettierd", "prettier" } },
+    ["*"] = { "codespell" },
+    ["_"] = { "trim_whitespace" },
   },
 
   format_on_save = {
