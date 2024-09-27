@@ -143,6 +143,7 @@ end
 
 M.server_config = function()
   local lspconfig = require "lspconfig"
+  local util = require "lspconfig.util"
   local servers = { "html", "cssls", "tsserver", "tailwindcss", "eslint" }
 
   -- lsps with default config
@@ -153,5 +154,27 @@ M.server_config = function()
       capabilities = M.capabilities,
     }
   end
+
+  -- lsp for go
+  lspconfig.gopls.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+          unusedparams = true,
+          -- unusedwrite = true,
+          -- unreachable = true,
+          -- nilness = true,
+          -- shadow = true,
+        },
+      },
+    },
+  }
 end
 return M

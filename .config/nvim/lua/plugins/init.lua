@@ -31,6 +31,8 @@ return {
         "stylua",
         "tailwindcss-language-server",
         "typescript-language-server",
+
+        "gopls",
       },
     },
   },
@@ -156,40 +158,58 @@ return {
     end,
   },
 
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   build = ":Copilot auth",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup {
+  --       panel = {
+  --         enabled = true,
+  --         auto_refresh = true,
+  --         keymap = {
+  --           jump_next = "<c-j>",
+  --           jump_prev = "<c-k>",
+  --           accept = "<CR>",
+  --           refresh = "r",
+  --           open = "<M-CR>",
+  --         },
+  --         layout = {
+  --           position = "right", -- | top | left | right
+  --           ratio = 0.4,
+  --         },
+  --       },
+  --       suggestion = {
+  --         enabled = true,
+  --         auto_trigger = true,
+  --         debounce = 75,
+  --         keymap = {
+  --           accept = "<Tab>",
+  --           accept_word = false,
+  --           accept_line = false,
+  --           next = "<c-j>",
+  --           prev = "<c-k>",
+  --           dismiss = "<C-e>",
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
+
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
+    "supermaven-inc/supermaven-nvim",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup {
-        panel = {
-          enabled = true,
-          auto_refresh = true,
-          keymap = {
-            jump_next = "<c-j>",
-            jump_prev = "<c-k>",
-            accept = "<CR>",
-            refresh = "r",
-            open = "<M-CR>",
-          },
-          layout = {
-            position = "right", -- | top | left | right
-            ratio = 0.4,
-          },
+      require("supermaven-nvim").setup {
+        keymaps = {
+          accept_suggestion = "<Tab>",
+          clear_suggestion = "<C-]>",
+          accept_word = "<C-w>",
         },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = "<Tab>",
-            accept_word = false,
-            accept_line = false,
-            next = "<c-j>",
-            prev = "<c-k>",
-            dismiss = "<C-e>",
-          },
+        color = {
+          suggestion_color = "#ffffff",
+          cterm = 244,
         },
       }
     end,
@@ -236,6 +256,30 @@ return {
     },
     config = function()
       require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    keys = {
+      { "gcc", mode = "n", desc = "Comment toggle current line" },
+      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n", desc = "Comment toggle current block" },
+      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+    },
+    config = function()
+      local comment = require "Comment"
+      local ts_context_commentstring = require "ts_context_commentstring.integrations.comment_nvim"
+
+      -- enable comment
+      comment.setup {
+        -- for commenting tsx and jsx files
+        pre_hook = ts_context_commentstring.create_pre_hook(),
+      }
     end,
   },
 
@@ -346,5 +390,26 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    ft = "go",
+  },
+
+  {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = "mfussenegger/nvim-dap",
+  },
+
+  {
+    "olexsmir/gopher.nvim",
+    config = function(_, opts)
+      require("gopher").setup(opts)
+    end,
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
+    end,
   },
 }

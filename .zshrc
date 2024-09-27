@@ -143,3 +143,21 @@ fi
 
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
+
+# Postgres
+ export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin

@@ -9,6 +9,7 @@ local options = {
     javascriptreact = { { "prettierd", "prettier" } },
     ["*"] = { "codespell" },
     ["_"] = { "trim_whitespace" },
+    go = { "gofumpt", "goimports-reviser", "golines" },
   },
 
   format_on_save = {
